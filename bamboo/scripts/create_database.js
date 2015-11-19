@@ -3,7 +3,15 @@
  */
 
 var mysql = require('mysql');
-var dbconfig = require('../config/database');
+var dbconfig = {
+    'connection': {
+        'host': 'localhost',
+        'user': 'testuser',
+        'password': 'testpass'
+    },
+	'database': 'bamboo',
+    'users_table': 'users'
+};
 
 var connection = mysql.createConnection(dbconfig.connection);
 
