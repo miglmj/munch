@@ -15,12 +15,9 @@ var bodyParser = require('body-parser');
 var mysql = require('mysql');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 
-var passport = require('passport'),
-  LocalStrategy = require('passport-local').Strategy;
-
-
+var passport = require('passport');
+var flash = require('connect-flash');
 
 var app = express();
 
