@@ -3,11 +3,19 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Munch' });
+  res.render('index');
 });
 
 router.get('/cook', function(req, res, next) {
-  res.render('cook', { title: 'Munch' });
+  res.render('cook');
+});
+
+router.get('/login', function(req, res, next) {
+
+});
+
+router.get('/about', function(req, res, next) {
+  res.render('about');
 });
 
 module.exports = router;
