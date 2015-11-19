@@ -1,4 +1,12 @@
+
+/* App file, pretty much the server file
+    should probably be named server.js
+    but i'm still just figuring this all out lol
+    will restructure later
+*/
+
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -8,6 +16,11 @@ var mysql = require('mysql');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
+var passport = require('passport'),
+  LocalStrategy = require('passport-local').Strategy;
+
+
 
 var app = express();
 
@@ -21,7 +34,7 @@ var pool      =    mysql.createPool({
      database : 'artichoke',
      debug    :  false
  });
- 
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
