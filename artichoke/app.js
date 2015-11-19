@@ -12,7 +12,7 @@ var users = require('./routes/users');
 var app = express();
 
 // MySQL Pool Set Up (Allow concurrent users)
-/*
+
 var pool      =    mysql.createPool({
      connectionLimit : 100, //important
      host     : 'localhost',
@@ -21,7 +21,7 @@ var pool      =    mysql.createPool({
      database : 'artichoke',
      debug    :  false
  });
- */
+ 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
