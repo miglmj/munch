@@ -11,8 +11,10 @@ router.get('/cook', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-
+  res.render('login');
 });
+
+router.post('/login', )
 
 router.get('/about', function(req, res, next) {
   res.render('about');
