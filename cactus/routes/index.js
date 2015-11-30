@@ -106,8 +106,10 @@ module.exports = function(app, passport) {
   });
 
   app.post('/menu', function(req, res) {
-    var meals = connection.query("SELECT * FROM MEALS");
-    console.log(meals);
+    connection.query("SELECT * FROM meals", function(err, result){
+      if(err) throw err;
+      console.log(result);
+    })
   })
 
   app.get('/logout', function(req, res) {
