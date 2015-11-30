@@ -135,10 +135,9 @@ function getAllMeals(req, res, next) {
       console.log(element);
     }
 
-    result.forEach(logElements);
-
+    console.log('for...in loop');
     for(var element in result) {
-      req.body.meals.push(element);
+      console.log(element);
     }
 
     console.log('req.body.meals: ' + req.body.meals);
