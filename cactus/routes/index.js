@@ -108,11 +108,9 @@ module.exports = function(app, passport) {
 
       var meals = {};
 
-      for(int i = 0; i < result.length; i++){
+      for(var i = 0; i < result.length; i++){
         meals[result[i].id] = result[i];
       }
-
-
 
       res.render('menu', {meals: meals});
       console.log('inside sql query function');
