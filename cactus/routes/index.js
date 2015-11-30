@@ -104,11 +104,16 @@ module.exports = function(app, passport) {
     connection.query("SELECT * FROM meals", function(err, result){
       if(err) throw err;
 
-      function logElements(element, index, array){
-        console.log(element);
+      // var meals = JSON.stringify(result);
+
+      var meals = {};
+
+      for(int i = 0; i < result.length; i++){
+        meals[result[i].id] = result[i];
       }
 
-      meals = JSON.stringify(result);
+
+
       res.render('menu', {meals: meals});
       console.log('inside sql query function');
       console.log('meals');
