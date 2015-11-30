@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Munch</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <script src="/bower_components/holderjs/holder.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcHxoO_3TmanbmWGxKTXTs5Nq1WpvqL-c"></script>
+    <script>console.log('Scripts loaded');</script>
+  </head>
+  <body>
+
+    <!-- Container for the entire page's contents -->
+    <div class="container">
+
+      <!-- Header Bar -->
+      <div class="header">
+        <div class="navbar navbar-default">
+          <ul class="nav navbar-nav nav-pills pull-right">
+            <li active><a href="#">Join</a></li>
+            <li disabled><a href="/login">Login</a></li>
+          </ul>
+          <a class="navbar-brand" href="/">Munch</a>
+        </div>
+      </div>
+
+      <!-- Render rest of page -->
+
+      {{{body}}}
+
+    </div>
+  </body>
+</html>
