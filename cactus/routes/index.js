@@ -49,7 +49,7 @@ module.exports = function(app, passport) {
 
   app.get('/profile', isLoggedIn, function(req, res) {
     res.render('profile', {
-      username : req.user.username
+      user : req.user
     });
   });
 
@@ -135,9 +135,7 @@ function isLoggedIn(req, res, next) {
 
 function getAllMeals() {
 
-  var meals;
-
-  var parent = this;
+  var meals = {};
 
   connection.query("SELECT * FROM meals", function(err, result){
     if(err) throw err;
@@ -146,16 +144,12 @@ function getAllMeals() {
       console.log(element);
     }
 
-    parent.meals = JSON.stringify(result);
+    meals = JSON.stringify(result);
     console.log('inside sql query function');
     console.log('meals');
     console.log(meals);
 
   });
-
-  console.log('outside query, in getAllMeals');
-  console.log('meals');
-  console.log(meals);
 
   return meals;
 }
