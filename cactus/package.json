@@ -9,7 +9,9 @@
   "author": "Miguel Mejia",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.3"
+    "bootstrap": "^3.3.6",
+    "express": "^4.13.3",
+    "mysql": "^2.9.0"
   },
   "devDependencies": {}
 }
