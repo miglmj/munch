@@ -57,7 +57,7 @@ module.exports = function(passport) {
               var newUser = {
                 username: username,
                 email: req.body.email,
-                password: bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                password: bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
               };
 
               var insertQuery = "INSERT INTO " + dbconfig.users_table + "(username, email, password) values (?,?,?)";
