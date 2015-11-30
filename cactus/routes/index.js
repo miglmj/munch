@@ -137,6 +137,13 @@ function getAllMeals() {
     }
 
     var meals = JSON.stringify(result);
+    console.log('inside getallmeals function');
+    console.log('meals');
+    console.log(meals);
+
+    console.log('result');
+    console.log(result);
+
     return meals;
 
   });
