@@ -3,8 +3,18 @@
   <!-- Google Map placeholder -->
   <div class="col-md-7">
     <div class = "panel">
-    <div id=map>
-    </div>
+      <div id=map></div>
+      <script type="text/javascript">
+
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 30.438, lng: -84.28},
+    zoom: 8
+  });
+}
+
+    </script>
     </div>
   </div>
 
