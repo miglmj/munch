@@ -1,6 +1,6 @@
 // database libraries
 var mysql = require('mysql');
-var dbconfig = require('./database');
+var dbconfig = require('../config/database');
 var connection = mysql.createConnection(dbconfig.connection);
 
 // set database to be used
