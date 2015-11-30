@@ -128,17 +128,13 @@ function getAllMeals(req, res, next) {
   connection.query("SELECT * FROM meals", function(err, result){
     if(err) throw err;
 
-    console.log('entire request body');
-    console.log(req);
+    console.log('request body');
 
     function logElements(element, index, array){
       console.log(element);
     }
 
-    console.log('for...in loop');
-    for(var element in result) {
-      console.log(element);
-    }
+  req.body.forEach(logElements);
 
     console.log('req.body.meals: ' + req.body.meals);
 
