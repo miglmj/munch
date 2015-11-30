@@ -59,3 +59,5 @@ CREATE TABLE ' + dbconfig.database + '.' + dbconfig.ratings_table + ' ( \
       UNIQUE INDEX ratings_UNIQUE (mealid, ratinguser) \
 )');
 console.log('Success: Ratings table created');
+
+connection.end();
