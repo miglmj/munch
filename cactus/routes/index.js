@@ -99,20 +99,19 @@ module.exports = function(app, passport) {
   });
 
   // menu views, show available meals
-  app.get('/menu', function(req, res) {
+  app.get('/menu', getAllMeals, function(req, res) {
 
 
-    console.log('calling getAllMeals function now');
-    var postedmeals = getAllMeals();
+    var postedmeals = req.meals;
 
-    // console.log('posted meals, answering get request');
-    // console.log(postedmeals);
-
+    console.log('posted meals, answering get request');
+    console.log(postedmeals);
 
 
-    // res.render('menu', {
-    //   meals: postedmeals
-    // });
+
+    res.render('menu', {
+      meals: postedmeals
+    });
 
   });
 
@@ -133,9 +132,9 @@ function isLoggedIn(req, res, next) {
 	res.redirect('/');
 }
 
-function getAllMeals() {
+function getAllMeals(req, res, next) {
 
-  var meals = {};
+  req.meals = {};
 
   connection.query("SELECT * FROM meals", function(err, result){
     if(err) throw err;
@@ -144,13 +143,14 @@ function getAllMeals() {
       console.log(element);
     }
 
-    meals = JSON.stringify(result);
+    req.meals = JSON.stringify(result);
     res.render('/menu', {meals: meals});
     console.log('inside sql query function');
     console.log('meals');
     console.log(meals);
 
+    next();
   });
 
-  return meals;
+
 }
