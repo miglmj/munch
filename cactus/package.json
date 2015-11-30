@@ -2,7 +2,7 @@
   "name": "munch",
   "version": "3.0.0",
   "description": "A meal-sharing platform for today's college student",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
