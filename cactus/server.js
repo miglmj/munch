@@ -22,7 +22,7 @@ app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap'));
 
 
 // Use routes file for all requests
-app.use('/', routes);
+require('./routes/index')(app);
 
 // catch 404
 app.use(function(req, res, next) {
