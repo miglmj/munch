@@ -65,11 +65,11 @@ module.exports = function(app, passport) {
     var datetime = req.body.mealdate + " " + req.body.mealtime + ":00";
     var userid  = req.user.id;
 
-    console.log(title);
-    console.log(price);
-    console.log(address);
-    console.log(datetime);
-    console.log(userid);
+    // console.log(title);
+    // console.log(price);
+    // console.log(address);
+    // console.log(datetime);
+    // console.log(userid);
 
     if(title.length > 0 && title.length <= 30) {
       if(price > 0 && price < 1000) {
@@ -97,6 +97,18 @@ module.exports = function(app, passport) {
     }
 
   });
+
+  // menu views, show available meals
+  app.get('/menu', function(req, res) {
+
+    res.render('menu');
+
+  });
+
+  app.post('/menu', function(req, res) {
+    var meals = connection.query("SELECT * FROM MEALS");
+    console.log(meals);
+  })
 
   app.get('/logout', function(req, res) {
     req.logout();
