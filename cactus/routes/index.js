@@ -130,21 +130,27 @@ function isLoggedIn(req, res, next) {
 
 function getAllMeals() {
 
-  var meals = connection.query("SELECT * FROM meals", function(err, result){
+  var meals;
+
+  connection.query("SELECT * FROM meals", function(err, result){
     if(err) throw err;
 
     function logElements(element, index, array){
       console.log(element);
     }
 
-    var meals = JSON.stringify(result);
-    console.log('inside getallmeals function');
+    meals = JSON.stringify(result);
+    console.log('inside sql query function');
     console.log('meals');
     console.log(meals);
 
     return meals;
 
   });
+
+  console.log('outside query, in getAllMeals');
+  console.log('meals');
+  console.log(meals);
 
   return meals;
 }
