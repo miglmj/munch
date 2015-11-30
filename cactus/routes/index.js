@@ -50,9 +50,20 @@ module.exports = function(app, passport) {
   });
 
   app.post('/cook', isLoggedIn, function(req, res) {
-    console.log(req.body.title);
-    console.log(req.body.price);
-    console.log(req.body.address);
+
+    var title = req.body.title;
+    var price = req.body.price;
+    var address = req.body.addess;
+    var userid  = req.user.id;
+
+    if(title.length > 0 && title.length <= 30) {
+      if(price > 0 && price < 1000) {
+        if(address.length > 0 && address.length < 121) {
+
+        }
+      }
+    }
+
   });
 
   app.get('/logout', function(req, res) {
