@@ -21,33 +21,33 @@ var flash = require('connect-flash');
 
 var app = express();
 
-// MySQL Pool Set Up (Allow concurrent users)
-
-var pool      =    mysql.createPool({
-     connectionLimit : 100, //important
-     host     : 'localhost',
-     user     : 'testuser',
-     password : 'testpass',
-     database : 'artichoke',
-     debug    :  false
- });
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+require('./config/passport')(passport);
+
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
+app.use(session({
+  secret: 'miggyiggyiggy',
+  resave: true,
+  saveUninitialized: true
+} ));
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash
+
 app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
