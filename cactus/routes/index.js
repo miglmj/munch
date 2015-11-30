@@ -129,7 +129,9 @@ function isLoggedIn(req, res, next) {
 function getAllMeals(req, res, next) {
   connection.query("SELECT * FROM meals", function(err, result){
     if(err) throw err;
+    console.log('Result: ' + result);
     req.body.meals = result;
+    console.log('req.body.meals: ' + req.body.meals);
   });
   return next();
 }
