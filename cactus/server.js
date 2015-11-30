@@ -31,4 +31,6 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-module.exports = app;
+app.listen(3000, function() {
+  console.log('App running! Hopefully...');
+});
