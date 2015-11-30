@@ -11,7 +11,13 @@ var routes = require('./routes/index');
 // call expresss constructor
 var app = express();
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap'));
+
 
 // Use routes file for all requests
 app.use('/', routes);
