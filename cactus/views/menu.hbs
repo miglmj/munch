@@ -1,14 +1,14 @@
 <div class="row content">
 
   <!-- Google Map placeholder -->
-  <div class="col-md-7">
+  <div class="col-md-5">
     <div class="panel panel-default">
       <div id=map></div>
     </div>
   </div>
 
   <!-- Side Panel -->
-  <div class="col-md-5">
+  <div class="col-md-7">
     <div class="panel panel-default">
       <!-- Panel Title -->
       <div class="panel-heading">
@@ -30,12 +30,12 @@
           <tbody>
             {{#each meals}}
               <tr>
-                <td>{{title}}</td>
-                <td>{{chefid}}</td>
-                <td>{{price}}</td>
-                <td>{{title}}</td>
-                <td>{{location}}</td>
-                <td>{{eatby}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.chefid}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.location}}</td>
+                <td>{{this.eatby}}</td>
               </tr>
             {{/each}}
           </tbody>
