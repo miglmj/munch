@@ -102,7 +102,7 @@ module.exports = function(app, passport) {
   app.get('/menu', getAllMeals, function(req, res) {
 
     res.render('menu', {
-      meals: req.body.meals;
+      meals: req.body.meals
     });
 
     console.log(req.body.meals);
