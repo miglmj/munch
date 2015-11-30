@@ -99,19 +99,32 @@ module.exports = function(app, passport) {
   });
 
   // menu views, show available meals
-  app.get('/menu', getAllMeals, function(req, res) {
+  app.get('/menu', function(req, res) {
 
+    connection.query("SELECT * FROM meals", function(err, result){
+      if(err) throw err;
 
-    var postedmeals = req.meals;
+      function logElements(element, index, array){
+        console.log(element);
+      }
 
-    console.log('posted meals, answering get request');
-    console.log(postedmeals);
-
-
-
-    res.render('menu', {
-      meals: postedmeals
+      req.meals = JSON.stringify(result);
+      res.render('/menu', {meals: meals});
+      console.log('inside sql query function');
+      console.log('meals');
+      console.log(meals);
     });
+
+    // var postedmeals = req.meals;
+    //
+    // console.log('posted meals, answering get request');
+    // console.log(postedmeals);
+    //
+    //
+    //
+    // res.render('menu', {
+    //   meals: postedmeals
+    // });
 
   });
 
@@ -132,25 +145,23 @@ function isLoggedIn(req, res, next) {
 	res.redirect('/');
 }
 
-function getAllMeals(req, res, next) {
-
-  req.meals = {};
-
-  connection.query("SELECT * FROM meals", function(err, result){
-    if(err) throw err;
-
-    function logElements(element, index, array){
-      console.log(element);
-    }
-
-    req.meals = JSON.stringify(result);
-    res.render('/menu', {meals: meals});
-    console.log('inside sql query function');
-    console.log('meals');
-    console.log(meals);
-
-    next();
-  });
+// function getAllMeals(req, res, next) {
+//
+//   req.meals = {};
+//
+//   connection.query("SELECT * FROM meals", function(err, result){
+//     if(err) throw err;
+//
+//     function logElements(element, index, array){
+//       console.log(element);
+//     }
+//
+//     req.meals = JSON.stringify(result);
+//     res.render('/menu', {meals: meals});
+//     console.log('inside sql query function');
+//     console.log('meals');
+//     console.log(meals);
+//   });
 
 
 }
