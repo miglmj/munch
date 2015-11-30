@@ -2,19 +2,8 @@
 
   <!-- Google Map placeholder -->
   <div class="col-md-7">
-    <div class = "panel">
+    <div class = "panel panel-default">
       <div id=map></div>
-      <script type="text/javascript">
-
-var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 30.438, lng: -84.28},
-    zoom: 8
-  });
-}
-
-    </script>
     </div>
   </div>
 
@@ -27,7 +16,21 @@ function initMap() {
       </div>
       <!-- Panel Body -->
       <div class="panel-body">
-        Form will go here
+        <form action="/cook" method="post">
+            <div class="form-group">
+                <label>Title:</label>
+                <input type="text" class="form-control" name="title"/>
+            </div>
+            <div class="form-group">
+                <label>Price:</label>
+                <input type="text" class="form-control"  name="price"/>
+            </div>
+            <div class="form-group">
+                <label>Address:</label>
+                <input type="text" class="form-control"  name="address"/>
+            </div>
+            <button type="submit" class="btn btn-warning btn-lg">Submit</button>
+        </form>
       </div>
     </div>
   </div>

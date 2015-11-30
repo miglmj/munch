@@ -45,19 +45,14 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.get('/cook', function(req, res) {
-    var map;
-
+  app.get('/cook', isLoggedIn, function(req, res) {
     res.render('cook');
+  });
 
-
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 30.438, lng: -84.28},
-        zoom: 8
-    });
-    }
-
+  app.post('/cook', isLoggedIn, function(req, res) {
+    console.log(req.body.title);
+    console.log(req.body.price);
+    console.log(req.body.address);
   });
 
   app.get('/logout', function(req, res) {
