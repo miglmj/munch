@@ -101,9 +101,14 @@ module.exports = function(app, passport) {
   // menu views, show available meals
   app.get('/menu', function(req, res) {
 
+
+    console.log('calling getAllMeals function now');
     var postedmeals = getAllMeals();
 
+    console.log('posted meals, answering get request');
     console.log(postedmeals);
+
+
 
     res.render('menu', {
       meals: postedmeals
