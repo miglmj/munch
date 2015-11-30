@@ -162,6 +162,4 @@ function isLoggedIn(req, res, next) {
 //     console.log('meals');
 //     console.log(meals);
 //   });
-
-
-}
+//  }
