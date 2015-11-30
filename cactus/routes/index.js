@@ -54,7 +54,18 @@ module.exports = function(app, passport) {
     var title = req.body.title;
     var price = req.body.price;
     var address = req.body.addess;
+    var datetime = req.body.date + " " + req.body.time;
     var userid  = req.user.id;
+
+    console.log(title);
+    console.log(price);
+    console.log(address);
+    console.log(datetime);
+    console.log(userid);
+
+
+
+
 
     if(title.length > 0 && title.length <= 30) {
       if(price > 0 && price < 1000) {
