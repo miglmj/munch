@@ -99,10 +99,14 @@ module.exports = function(app, passport) {
   });
 
   // menu views, show available meals
-  app.get('/menu', getAllMeals, function(req, res) {
+  app.get('/menu', function(req, res) {
+
+    var postedmeals = getAllMeals();
+
+    console.log(postedmeals);
 
     res.render('menu', {
-      meals: req.body.meals
+      meals: postedmeals
     });
 
   });
@@ -124,20 +128,16 @@ function isLoggedIn(req, res, next) {
 	res.redirect('/');
 }
 
-function getAllMeals(req, res, next) {
+function getAllMeals() {
   connection.query("SELECT * FROM meals", function(err, result){
     if(err) throw err;
-
-    console.log('request body');
 
     function logElements(element, index, array){
       console.log(element);
     }
 
-  console.log(req.body);
-
-    console.log('req.body.meals: ' + req.body.meals);
+    var meals = JSON.stringify(result);
+    return meals;
 
   });
-  return next();
 }
