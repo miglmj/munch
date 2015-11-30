@@ -109,7 +109,7 @@ module.exports = function(app, passport) {
       }
 
       meals = JSON.stringify(result);
-      res.render('/menu', {meals: meals});
+      res.render('menu', {meals: meals});
       console.log('inside sql query function');
       console.log('meals');
       console.log(meals);
