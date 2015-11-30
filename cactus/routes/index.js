@@ -79,11 +79,11 @@ module.exports = function(app, passport) {
             price:  price,
             location: address,
             title:  title,
-            orderby:  datetime
+            eatby:  datetime
           }
 
-          var insertQuery = "INSERT INTO " + dbconfig.meals_table + "(chefid, price, title, location, orderby) values (?,?,?,?,?)";
-          var inserts = [ newMeal.chefid, newMeal.price, newMeal.title, newMeal.location, newMeal.orderby ];
+          var insertQuery = "INSERT INTO " + dbconfig.meals_table + "(chefid, price, title, location, eatby) values (?,?,?,?,?)";
+          var inserts = [ newMeal.chefid, newMeal.price, newMeal.title, newMeal.location, newMeal.eatby ];
           console.log(insertQuery);
           console.log(inserts);
 
