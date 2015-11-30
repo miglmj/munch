@@ -23,14 +23,14 @@ module.exports = function(passport) {
     done(null, user.id);
   });
 
-  // used to deserialize the user
-  // passport.deserialize(function(id, done) {
-  //   connection.query("SELECT * FROM users WHERE id = ?", [id], function(err, rows) {
-  //     done(err, rows[0]);
-  //   });
-  // });
+  used to deserialize the user
+  passport.deserialize(function(id, done) {
+    connection.query("SELECT * FROM users WHERE id = ?", [id], function(err, rows) {
+      done(err, rows[0]);
+    });
+  });
 
-  // Local signup
+  Local signup
 
   passport.use(
     'local-signup',
