@@ -105,14 +105,14 @@ module.exports = function(app, passport) {
     console.log('calling getAllMeals function now');
     var postedmeals = getAllMeals();
 
-    console.log('posted meals, answering get request');
-    console.log(postedmeals);
+    // console.log('posted meals, answering get request');
+    // console.log(postedmeals);
 
 
 
-    res.render('menu', {
-      meals: postedmeals
-    });
+    // res.render('menu', {
+    //   meals: postedmeals
+    // });
 
   });
 
@@ -145,6 +145,7 @@ function getAllMeals() {
     }
 
     meals = JSON.stringify(result);
+    res.render('/menu', {meals: meals});
     console.log('inside sql query function');
     console.log('meals');
     console.log(meals);
