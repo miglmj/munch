@@ -85,7 +85,7 @@ module.exports = function(app, passport) {
           var insertQuery = "INSERT INTO " + dbconfig.meals_table + "(chefid, price, title, location, orderby) values (?,?,?,?,?)";
           console.log(insertQuery);
           connection.query(insertQuery, [newMeal.chefid, newMeal.price, newMeal.title, newMeal.location, newMeal.orderby ], function(err, rows) {
-            
+            console.log('We tried');
           });
         }
       }
