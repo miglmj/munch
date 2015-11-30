@@ -5,11 +5,18 @@ module.exports = function(app) {
     res.render('index');
   });
 
-  // app.get('/login', function(req, res) {
-  //   //render the page and pass any existing flash data
-  //   res.render('login', { message: req.flash('loginMessage')});
-  // });
+  // Initial login page
+  app.get('/login', function(req, res) {
+    //render the page and pass any existing flash data
+    res.render('login');
+  });
 
+  app.get('/signup', function(req, res) {
+    res.render('signup');
+  });
 
+  app.get('/cook', function(req, res) {
+    res.render('cook');
+  });
 
 };
