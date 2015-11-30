@@ -105,8 +105,6 @@ module.exports = function(app, passport) {
       meals: req.body.meals
     });
 
-    console.log(req.body.meals);
-
   });
 
 
@@ -129,10 +127,21 @@ function isLoggedIn(req, res, next) {
 function getAllMeals(req, res, next) {
   connection.query("SELECT * FROM meals", function(err, result){
     if(err) throw err;
+
+    var req.body.meals = [];
+
     function logElements(element, index, array){
       console.log(element);
     }
+
     result.forEach(logElements);
+
+    for(var element in result) {
+      req.body.meals.push(element);
+    }
+
+    console.log('req.body.meals: ' + req.body.meals);
+
   });
   return next();
 }
