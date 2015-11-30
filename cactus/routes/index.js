@@ -128,7 +128,8 @@ function getAllMeals(req, res, next) {
   connection.query("SELECT * FROM meals", function(err, result){
     if(err) throw err;
 
-    var req.body.meals = [];
+    console.log('entire request body');
+    console.log(req);
 
     function logElements(element, index, array){
       console.log(element);
