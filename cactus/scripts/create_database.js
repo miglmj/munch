@@ -55,7 +55,12 @@ CREATE TABLE ' + dbconfig.database + '.' + dbconfig.ratings_table + ' ( \
       ON DELETE CASCADE, \
     FOREIGN KEY(ratinguser) \
       REFERENCES ' + dbconfig.database + '.' + dbconfig.users_table +'(id) \
-      ON DELETE CASCADE, \
-    UNIQUE INDEX ratings_UNIQUE (mealid, ratinguser) \
+      ON DELETE CASCADE
 )');
 console.log('Success: Ratings table created');
+
+
+/*
+, \
+UNIQUE INDEX ratings_UNIQUE (mealid, ratinguser) \
+*/
