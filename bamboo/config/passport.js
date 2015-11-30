@@ -30,7 +30,7 @@ module.exports = function(passport) {
     });
   });
 
-  Local signup
+  // Local signup
 
   passport.use(
     'local-signup',
