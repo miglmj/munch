@@ -24,11 +24,11 @@ module.exports = function(passport) {
   });
 
   // used to deserialize the user
-  passport.deserialize(function(id, done) {
-    connection.query("SELECT * FROM users WHERE id = ?", [id], function(err, rows) {
-      done(err, rows[0]);
-    });
-  });
+  // passport.deserialize(function(id, done) {
+  //   connection.query("SELECT * FROM users WHERE id = ?", [id], function(err, rows) {
+  //     done(err, rows[0]);
+  //   });
+  // });
 
   // Local signup
 
