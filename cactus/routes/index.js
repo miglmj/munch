@@ -1,3 +1,11 @@
+// database libraries
+var mysql = require('mysql');
+var dbconfig = require('./database');
+var connection = mysql.createConnection(dbconfig.connection);
+
+// set database to be used
+connection.query('USE ' + dbconfig.database);
+
 module.exports = function(app, passport) {
 
   // Home Page
@@ -54,7 +62,7 @@ module.exports = function(app, passport) {
     var title = req.body.title;
     var price = req.body.price;
     var address = req.body.address;
-    var datetime = req.body.mealdate + " " + req.body.mealtime;
+    var datetime = req.body.mealdate + " " + req.body.mealtime + ":00";
     var userid  = req.user.id;
 
     console.log(title);
@@ -63,14 +71,21 @@ module.exports = function(app, passport) {
     console.log(datetime);
     console.log(userid);
 
-
-
-
-
     if(title.length > 0 && title.length <= 30) {
       if(price > 0 && price < 1000) {
         if(address.length > 0 && address.length < 121) {
+          var newMeal = {
+            chefid: userid,
+            price:  price,
+            location: address,
+            title:  title,
+            orderby:  datetime
+          }
 
+          var insertQuery = "INSERT INTO " + dbconfig.meals_table + "(chefid, price, title, location, orderby) values (?,?,?,?,?)";
+          connection.query(insertQuery, [newMeal.chefid, newMeal.price, newMeal.title, newMeal.location, newMeal.orderby ], function(err, rows) {
+            newMeal.id = rows.insertId;
+          });
         }
       }
     }
