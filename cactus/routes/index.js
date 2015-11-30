@@ -54,7 +54,7 @@ module.exports = function(app, passport) {
     var title = req.body.title;
     var price = req.body.price;
     var address = req.body.address;
-    var datetime = req.body.date + " " + req.body.time;
+    var datetime = req.body.mealdate + " " + req.body.mealtime;
     var userid  = req.user.id;
 
     console.log(title);
