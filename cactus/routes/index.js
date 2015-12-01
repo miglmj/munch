@@ -127,7 +127,43 @@ module.exports = function(app, passport) {
   });
 
   app.get('/myorders', isLoggedIn, function(req, res) {
-    res.render('orders', {user: req.user});
+
+    var userorders = {};
+
+    var selectQuery = "SELECT * FROM " + dbconfig.orders_table " WHERE custid = ?";
+    var inserts = [req.user.id];
+
+    connection.query(selectQuery, inserts, function(err, result) {
+
+
+      for(var i = 0; i < result.length; i++){
+
+        userorders[result[i].id] = {
+          orderid: result[i].id,
+          mealid: result[i].mealid,
+          placed: result[i].placed,
+          meals: {}
+        }
+
+        var otherQuery = "SELECT * FROM " dbconfig.meals_table " WHERE mealid = ?";
+        var insert = [result[i].mealid];
+        connection.query(otherQuery, insert, function(err, results) {
+          for(var k = 0; i < results.length; i++){
+            userorders[result[i].id].meals[results.[k].id] = results[k];
+          }
+          console.log(userorders);
+        });
+
+
+
+
+
+      }
+    })
+
+
+
+
   })
 
   app.post('/myorders', isLoggedIn, function(req, res) {
@@ -137,6 +173,7 @@ module.exports = function(app, passport) {
 
     var insertQuery = "INSERT INTO " + dbconfig.orders_table +"(mealid, custid) values (?,?)";
     var checkQuery = "SELECT * FROM " + dbconfig.orders_table + " WHERE mealid = ? AND custid = ?";
+
     var inserts = [mealid, custid];
 
     connection.query(checkQuery, inserts, function(err, results) {

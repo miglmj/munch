@@ -34,7 +34,7 @@ CREATE TABLE ' + dbconfig.database + '.' + dbconfig.meals_table + ' ( \
     price DECIMAL(3,2) NOT NULL, \
     title VARCHAR(30) NOT NULL, \
     location VARCHAR(120) NOT NULL, \
-    placed TIMESTAMP DEFAULT CURRENT_TIMESTAMP, \
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP, \
     eatby DATETIME NOT NULL, \
       PRIMARY KEY(id), \
       FOREIGN KEY (chefid)  \
@@ -50,6 +50,7 @@ CREATE TABLE ' + dbconfig.database + '.' + dbconfig.orders_table + ' ( \
     mealid INT UNSIGNED NOT NULL, \
     custid INT UNSIGNED NOT NULL, \
     rating INT, \
+    placed TIMESTAMP DEFAULT CURRENT_TIMESTAMP, \
     PRIMARY KEY(id), \
     FOREIGN KEY(mealid) \
       REFERENCES ' + dbconfig.database + '.' + dbconfig.meals_table +'(id) \
