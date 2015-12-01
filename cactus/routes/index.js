@@ -19,6 +19,7 @@ module.exports = function(app, passport) {
       meal = result[0];
 
       req.meal = meal;
+      next();
     });
   });
 
