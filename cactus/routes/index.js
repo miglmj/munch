@@ -2,15 +2,19 @@
 var mysql = require('mysql');
 var dbconfig = require('../config/database');
 var connection = mysql.createConnection(dbconfig.connection);
+connection.query('USE ' + dbconfig.database);
 
 // set database to be used
-connection.query('USE ' + dbconfig.database);
+
 
 module.exports = function(app, passport) {
 
   // app parameter functions
 
   app.param('mealid', function(req, res, next, id){
+
+    var connection = mysql.createConnection(dbconfig.connection);
+    connection.query('USE ' + dbconfig.database);
     connection.query("SELECT * FROM meals WHERE id = ?", [id], function(err, result){
       if(err) throw err;
 
@@ -19,8 +23,12 @@ module.exports = function(app, passport) {
       meal = result[0];
 
       req.meal = meal;
-      next();
     });
+
+    connection.end(function(err){
+      if(err) throw err;
+      next();
+    })
   });
 
 
@@ -75,6 +83,9 @@ module.exports = function(app, passport) {
 
   app.post('/cook', isLoggedIn, function(req, res) {
 
+    var connection = mysql.createConnection(dbconfig.connection);
+    connection.query('USE ' + dbconfig.database);
+
     var title = req.body.title;
     var price = req.body.price;
     var address = req.body.address;
@@ -103,30 +114,42 @@ module.exports = function(app, passport) {
         }
       }
     }
+    connection.end(function(err) {
+      if(err) throw err;
+    });
 
   });
 
   // menu views, show available meals
   app.get('/menu', function(req, res) {
 
-      connection.query("SELECT * FROM meals", function(err, result){
+    var connection = mysql.createConnection(dbconfig.connection);
+    connection.query('USE ' + dbconfig.database);
+
+    var meals = {};
+
+    connection.query("SELECT * FROM meals", function(err, result){
         if(err) throw err;
-        var meals = {};
 
         for(var i = 0; i < result.length; i++){
           meals[result[i].id] = result[i];
         }
-
-        res.render('menu', {meals: meals});
       });
+
+    connection.end(function(err){
+      if(err) throw err;
+      res.render('menu', {meals: meals});
+    })
   });
 
   app.get('/menu/:mealid', function(req, res) {
-    console.log(req.meal);
     res.render('meal', {meal: req.meal, user: req.user});
   });
 
   app.get('/myorders', isLoggedIn, function(req, res) {
+
+    var connection = mysql.createConnection(dbconfig.connection);
+    connection.query('USE ' + dbconfig.database);
 
     var userorders = {};
 
@@ -134,12 +157,11 @@ module.exports = function(app, passport) {
     var mealsQuery = "SELECT * FROM " + dbconfig.meals_table + " WHERE mealid = ?";
     var userinsert = [req.user.id];
     var mealsarr = [];
+    var meals = {};
 
     connection.query(ordersQuery, userinsert, function(err, result) {
       if(result){
         var lim = result.length;
-
-
         for(var i = 0; i < lim; i++){
 
           userorders[result[i].id] = {
@@ -147,34 +169,32 @@ module.exports = function(app, passport) {
             mealid: result[i].mealid,
             placed: result[i].placed,
           }
-
-          var mealinfo = {};
-
-          console.log('meal id?');
-          console.log(userorders[result[i].id].mealid);
-
-          connection.query(mealsQuery, userorders[result[i].id].mealid, function (err, results) {
-            console.log('subquery ran');
-            if(results){
-              console.log('subquery had results');
-              mealinfo = result[0];
-              userorders[result[i].id].meals = mealinfo;
-
-            }
-          });
+          mealsarr.pop(result[i].mealid);
         }
        }
-      });
+    });
+
+    connection.query("SELECT * FROM " + dbconfig.meals, function(err, result){
+      if(result){
+        for(var i = 0; i < result.length; i++){
+          meals[result[i].id] = result[i];
+        }
+      }
+    });
 
     connection.end(function(err){
       if(err) throw err;
       console.log('closing connection, about to log userorders and mealsarr');
       console.log(userorders);
+      console.log(meals);
       res.render('orders', {userorders: userorders});
     })
   });
 
   app.post('/myorders', isLoggedIn, function(req, res) {
+
+    var connection = mysql.createConnection(dbconfig.connection);
+    connection.query('USE ' + dbconfig.database);
 
     var mealid = parseInt(req.body.mealid);
     var custid = parseInt(req.body.custid);
@@ -198,6 +218,9 @@ module.exports = function(app, passport) {
       }
     });
 
+    connection.end(function(err){
+      if(err) throw err;
+    });
   })
 
 
