@@ -203,11 +203,16 @@ module.exports = function(app, passport) {
 
     var inserts = [mealid, custid];
 
+    console.log(mealid);
+    console.log(custid);
+
     connection.query(checkQuery, inserts, function(err, results) {
       if(err) throw err;
+      if(results) console.log(results);
       if(!results){
         connection.query(insertQuery, inserts, function(err, results) {
           if(err) throw err;
+          console.log('subquery ran');
           res.redirect('/myorders');
         });
       }
