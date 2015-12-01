@@ -135,7 +135,7 @@ module.exports = function(app, passport) {
     var userinsert = [req.user.id];
     var mealsarr = [];
 
-    connection.query(selectQuery, userinsert, function(err, result) {
+    connection.query(ordersQuery, userinsert, function(err, result) {
 
 
       for(var i = 0; i < result.length; i++){
