@@ -215,7 +215,8 @@ module.exports = function(app, passport) {
       console.log(results);
       console.log(results.length);
       if(!results.length){
-        connection2.query(insertQuery, inserts, function(err, results) {
+        console.log('ayy');
+        connection.query(insertQuery, inserts, function(err, results) {
           if(err) throw err;
           console.log('subquery ran');
         });
@@ -225,10 +226,6 @@ module.exports = function(app, passport) {
     connection.end(function(err){
       if(err) throw err;
       res.redirect('/myorders');
-    });
-
-    connection2.end(function(err){
-      if(err) throw err;
     });
   });
 
