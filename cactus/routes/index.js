@@ -208,18 +208,18 @@ module.exports = function(app, passport) {
 
     connection.query(checkQuery, inserts, function(err, results) {
       if(err) throw err;
-      if(results) console.log(results);
+      if(results) console.log('record already exists');
       if(!results.length){
         connection.query(insertQuery, inserts, function(err, results) {
           if(err) throw err;
           console.log('subquery ran');
-          res.redirect('/myorders');
         });
       }
     });
 
     connection.end(function(err){
       if(err) throw err;
+      res.redirect('/myorders');
     });
   })
 
