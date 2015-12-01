@@ -130,7 +130,7 @@ module.exports = function(app, passport) {
 
     var userorders = {};
 
-    var selectQuery = "SELECT * FROM " + dbconfig.orders_table " WHERE custid = ?";
+    var selectQuery = "SELECT * FROM " + dbconfig.orders_table + " WHERE custid = ?";
     var inserts = [req.user.id];
 
     connection.query(selectQuery, inserts, function(err, result) {
