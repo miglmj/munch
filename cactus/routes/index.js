@@ -224,10 +224,11 @@ module.exports = function(app, passport) {
       if(err) throw err;
       res.redirect('/myorders');
     });
+
     connection2.end(function(err){
       if(err) throw err;
-    })
-  })
+    });
+  });
 
 
   app.get('/logout', function(req, res) {
