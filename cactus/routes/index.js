@@ -209,7 +209,7 @@ module.exports = function(app, passport) {
     connection.query(checkQuery, inserts, function(err, results) {
       if(err) throw err;
       if(results) console.log(results);
-      if(!results){
+      if(!results.length){
         connection.query(insertQuery, inserts, function(err, results) {
           if(err) throw err;
           console.log('subquery ran');
