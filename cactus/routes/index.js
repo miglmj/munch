@@ -137,7 +137,9 @@ module.exports = function(app, passport) {
 
     connection.query(ordersQuery, userinsert, function(err, result) {
 
+      console.log('inside query, about to log result:');
       console.log(result);
+      console.log(result.length);
 
 
       for(var i = 0; i < result.length; i++){
@@ -162,6 +164,7 @@ module.exports = function(app, passport) {
 
     connection.end(function(err){
       if(err) throw err;
+      console.log('closing connection, about to log userorders and mealsarr');
       console.log(userorders);
       console.log(mealsarr);
       res.render('orders');
