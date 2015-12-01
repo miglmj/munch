@@ -195,9 +195,6 @@ module.exports = function(app, passport) {
     var connection = mysql.createConnection(dbconfig.connection);
     connection.query('USE ' + dbconfig.database);
 
-    var connection2 = mysql.createConnection(dbconfig.connection);
-    connection2.query('USE ' + dbconfig.database);
-
     var mealid = parseInt(req.body.mealid);
     var custid = parseInt(req.body.custid);
 
@@ -209,18 +206,9 @@ module.exports = function(app, passport) {
     console.log(mealid);
     console.log(custid);
 
-    connection.query(checkQuery, inserts, function(err, results) {
+    connection.query(insertQuery, inserts, function(err, results) {
       if(err) throw err;
-      console.log('results');
-      console.log(results);
-      console.log(results.length);
-      if(!results.length){
-        console.log('ayy');
-        connection.query(insertQuery, inserts, function(err, results) {
-          if(err) throw err;
-          console.log('subquery ran');
-        });
-      }
+      console.log('subquery ran');
     });
 
     connection.end(function(err){
