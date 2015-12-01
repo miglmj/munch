@@ -149,7 +149,7 @@ module.exports = function(app, passport) {
 
           var mealinfo = {};
           connection.query(mealsQuery, [result[i].mealid], function (err, result) {
-            if(result.length){
+            if(result){
               mealinfo = result[0];
               userorders[result[i].id].meals = mealinfo;
             }
@@ -212,5 +212,5 @@ function isLoggedIn(req, res, next) {
 		return next();
 
 	// if they aren't redirect them to the home page
-	res.redirect('/');
+	res.redirect('/login');
 }
