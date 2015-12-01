@@ -21,7 +21,7 @@ module.exports = function(app, passport) {
       }
       req.meal = meal;
     });
-  }
+  });
 
 
   // Home Page
