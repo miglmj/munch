@@ -145,7 +145,7 @@ module.exports = function(app, passport) {
           meals: {}
         }
 
-        var otherQuery = "SELECT * FROM " + dbconfig.meals_table " WHERE mealid = ?";
+        var otherQuery = "SELECT * FROM " + dbconfig.meals_table + " WHERE mealid = ?";
         var insert = [result[i].mealid];
         connection.query(otherQuery, insert, function(err, results) {
           for(var k = 0; i < results.length; i++){
