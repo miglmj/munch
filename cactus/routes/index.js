@@ -123,8 +123,37 @@ module.exports = function(app, passport) {
 
   app.get('/menu/:mealid', function(req, res) {
     console.log(req.meal);
-    res.render('meal', {meal: req.meal});
+    res.render('meal', {meal: req.meal, user: req.user});
   });
+
+  app.get('/myorders', isLoggedIn, function(req, res) {
+    res.render('orders', {user: req.user});
+  })
+
+  app.post('/myorders', isLoggedIn, function(req, res) {
+
+    var mealid = req.body.mealid;
+    var custid = req.body.custid;
+
+    var insertQuery = "INSERT INTO " + dbconfig.orders_table +"(mealid, custid) values (?,?)";
+    var checkQuery = "SELECT * FROM " + dbconfig.orders_table + "WHERE mealid = ? AND custid = ?";
+    var inserts = [mealid, custid];
+
+    connection.query(checkQuery, inserts, function(err, results) {
+      if(err) throw err;
+      if(results.length) {
+        req.flash('you already ordered this');
+        res.redirect('/myorders');
+      }
+      else {
+        connection.query(insertQuery, inserts, function(err, results) {
+          if(err) throw err;
+          res.redirect('/myorders');
+        });
+      }
+    });
+
+  })
 
 
   app.get('/logout', function(req, res) {

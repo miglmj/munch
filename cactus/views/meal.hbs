@@ -1,21 +1,28 @@
 <div class="col-md-7">
   <h1>Meal</h1>
   <div class="panel">
+
+        <p>
+          {{meal.title}}
+        </p>
+        <p>
+          {{meal.price}}
+        </p>
+        <p>
+          {{meal.location}}
+        </p>
+        <p>
+          {{meal.orderby}}
+        </p>
+
+    <form action="/myorders" method="post">
+      <input type="hidden" name=mealid value={{meal.id}}>
+      <input type="hidden" name=custid value={{user.id}}>
+      <button type="submit" class="btn btn-warning btn-lg">Place Order</button>
+    </form>
+
     <p>
-      {{meal.title}}
-    </p>
-    <p>
-      {{meal.price}}
-    </p>
-    <p>
-      {{meal.location}}
-    </p>
-    <p>
-      {{meal.orderby}}
-    </p>
-    
-    <p>
-      <a href="/menu">Hungry</a> instead?
+      <a href="/menu">Back</a> instead?
     </p>
   </div>
 </div>

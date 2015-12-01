@@ -34,6 +34,7 @@ CREATE TABLE ' + dbconfig.database + '.' + dbconfig.meals_table + ' ( \
     price DECIMAL(3,2) NOT NULL, \
     title VARCHAR(30) NOT NULL, \
     location VARCHAR(120) NOT NULL, \
+    placed TIMESTAMP DEFAULT CURRENT_TIMESTAMP, \
     eatby DATETIME NOT NULL, \
       PRIMARY KEY(id), \
       FOREIGN KEY (chefid)  \
