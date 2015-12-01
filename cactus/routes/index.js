@@ -16,9 +16,11 @@ module.exports = function(app, passport) {
 
       var meal = {};
 
-      for(var i = 0; i < result.length; i++){
-        meal[result[i].id] = result[i];
-      }
+      console.log(result);
+      console.log(result[0]);
+
+      meal = result[0];
+
       req.meal = meal;
     });
   });
@@ -94,8 +96,6 @@ module.exports = function(app, passport) {
 
           var insertQuery = "INSERT INTO " + dbconfig.meals_table + "(chefid, price, title, location, eatby) values (?,?,?,?,?)";
           var inserts = [ newMeal.chefid, newMeal.price, newMeal.title, newMeal.location, newMeal.eatby ];
-          console.log(insertQuery);
-          console.log(inserts);
 
           connection.query(insertQuery, inserts, function(err, result) {
             if(err) throw err;
@@ -120,9 +120,6 @@ module.exports = function(app, passport) {
         }
 
         res.render('menu', {meals: meals});
-        console.log('inside sql query function');
-        console.log('meals');
-        console.log(meals);
       });
   });
 
