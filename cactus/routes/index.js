@@ -141,6 +141,7 @@ module.exports = function(app, passport) {
 
 
         for(var i = 0; i < lim; i++){
+
           userorders[result[i].id] = {
             orderid: result[i].id,
             mealid: result[i].mealid,
@@ -148,10 +149,12 @@ module.exports = function(app, passport) {
           }
 
           var mealinfo = {};
-          connection.query(mealsQuery, [result[i].mealid], function (err, result) {
+
+          connection.query(mealsQuery, result[i].mealid, function (err, result) {
             if(result){
               mealinfo = result[0];
               userorders[result[i].id].meals = mealinfo;
+
             }
           });
         }

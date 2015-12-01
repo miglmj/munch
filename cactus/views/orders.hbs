@@ -20,6 +20,7 @@
           </thead>
           <tbody>
             {{#each userorders}}
+            <tr>
               <td>{{this.orderid}}</td>
               <td>{{this.mealinfo.title}}</td>
               <td>{{this.mealinfo.price}}</td>
@@ -27,6 +28,7 @@
               <td>{{this.mealinfo.chefid}}</td>
               <td>{{this.mealinfo.eatby}}</td>
               <td>{{this.placed}}</td>
+            </tr>
             {{/each}}
           </tbody>
         </table>
