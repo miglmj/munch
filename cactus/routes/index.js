@@ -211,6 +211,8 @@ module.exports = function(app, passport) {
 
     connection.query(checkQuery, inserts, function(err, results) {
       if(err) throw err;
+      console.log('results');
+      console.log(results);
       if(results) console.log('record already exists')
       if(!results.length){
         connection2.query(insertQuery, inserts, function(err, results) {
