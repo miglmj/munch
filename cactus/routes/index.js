@@ -153,7 +153,7 @@ module.exports = function(app, passport) {
               mealinfo = result[0];
               userorders[result[i].id].meals = mealinfo;
             }
-          }
+          });
         }
 
 
