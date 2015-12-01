@@ -195,6 +195,9 @@ module.exports = function(app, passport) {
     var connection = mysql.createConnection(dbconfig.connection);
     connection.query('USE ' + dbconfig.database);
 
+    var connection2 = mysql.createConnection(dbconfig.connection);
+    connection2.query('USE ' + dbconfig.database);
+
     var mealid = parseInt(req.body.mealid);
     var custid = parseInt(req.body.custid);
 
@@ -208,9 +211,9 @@ module.exports = function(app, passport) {
 
     connection.query(checkQuery, inserts, function(err, results) {
       if(err) throw err;
-      if(results) console.log('record already exists');
+      if(results) console.log('record already exists')
       if(!results.length){
-        connection.query(insertQuery, inserts, function(err, results) {
+        connection2.query(insertQuery, inserts, function(err, results) {
           if(err) throw err;
           console.log('subquery ran');
         });
@@ -221,6 +224,9 @@ module.exports = function(app, passport) {
       if(err) throw err;
       res.redirect('/myorders');
     });
+    connection2.end(function(err){
+      if(err) throw err;
+    })
   })
 
 
