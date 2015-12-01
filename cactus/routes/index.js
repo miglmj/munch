@@ -162,7 +162,7 @@ module.exports = function(app, passport) {
       if(err) throw err;
       console.log(userorders);
       console.log(mealsarr);
-      res.render('order');
+      res.render('orders');
     })
   });
 
