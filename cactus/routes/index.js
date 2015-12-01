@@ -156,17 +156,14 @@ module.exports = function(app, passport) {
         // });
 
       }
-
     });
 
-    connection.end();
-
-    res.render('orders');
-
-    console.log(userorders);
-    console.log(mealsarr);
-
-
+    connection.end(function(err){
+      if(err) throw err;
+      console.log(userorders);
+      console.log(mealsarr);
+      res.render('order');
+    })
   });
 
   app.post('/myorders', isLoggedIn, function(req, res) {
