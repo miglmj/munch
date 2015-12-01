@@ -150,6 +150,9 @@ module.exports = function(app, passport) {
 
           var mealinfo = {};
 
+          console.log('meal id?');
+          console.log(userorders[result[i].id].mealid);
+
           connection.query(mealsQuery, userorders[result[i].id].mealid, function (err, results) {
             console.log('subquery ran');
             if(results){
@@ -167,7 +170,6 @@ module.exports = function(app, passport) {
       if(err) throw err;
       console.log('closing connection, about to log userorders and mealsarr');
       console.log(userorders);
-      console.log(mealsarr);
       res.render('orders', {userorders: userorders});
     })
   });
