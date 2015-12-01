@@ -141,8 +141,10 @@ module.exports = function(app, passport) {
       console.log(result);
       console.log(result.length);
 
+      var lim = result.length;
 
-      for(var i = 0; i < result.length; i++){
+
+      for(var i = 0; i < lim; i++){
 
         userorders[result[i].id] = {
           orderid: result[i].id,
