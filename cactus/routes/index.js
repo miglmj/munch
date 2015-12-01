@@ -130,10 +130,12 @@ module.exports = function(app, passport) {
 
     var userorders = {};
 
-    var selectQuery = "SELECT * FROM " + dbconfig.orders_table + " WHERE custid = ?";
-    var inserts = [req.user.id];
+    var ordersQuery = "SELECT * FROM " + dbconfig.orders_table + " WHERE custid = ?";
+    var mealsQuery = "SELECT * FROM " + dbconfig.meals_table + " WHERE mealid = ?";
+    var userinsert = [req.user.id];
+    var mealsarr = [];
 
-    connection.query(selectQuery, inserts, function(err, result) {
+    connection.query(selectQuery, userinsert, function(err, result) {
 
 
       for(var i = 0; i < result.length; i++){
@@ -142,29 +144,30 @@ module.exports = function(app, passport) {
           orderid: result[i].id,
           mealid: result[i].mealid,
           placed: result[i].placed,
-          meals: {}
         }
 
-        var otherQuery = "SELECT * FROM " + dbconfig.meals_table + " WHERE mealid = ?";
-        var insert = [result[i].mealid];
-        connection.query(otherQuery, insert, function(err, results) {
-          for(var k = 0; i < results.length; i++){
-            userorders[result[i].id].meals[results[k].id] = results[k];
-          }
-          console.log(userorders);
-        });
+        mealsarr.push(result[i].mealid);
 
-
-
-
+        // connection.query(otherQuery, insert, function(err, results) {
+        //   for(var k = 0; i < results.length; i++){
+        //     userorders[result[i].id].meals[results[k].id] = results[k];
+        //   }
+        //   console.log(userorders);
+        // });
 
       }
-    })
+
+    });
+
+    connection.end();
+
+    res.render('orders');
+
+    console.log(userorders);
+    console.log(mealsarr);
 
 
-
-
-  })
+  });
 
   app.post('/myorders', isLoggedIn, function(req, res) {
 
