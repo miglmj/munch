@@ -136,7 +136,7 @@ module.exports = function(app, passport) {
     var mealsarr = [];
 
     connection.query(ordersQuery, userinsert, function(err, result) {
-      if(result.length){
+      if(result){
         var lim = result.length;
 
 
