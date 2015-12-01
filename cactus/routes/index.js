@@ -136,7 +136,7 @@ module.exports = function(app, passport) {
     var mealsarr = [];
 
     connection.query(ordersQuery, userinsert, function(err, result) {
-
+      if(result.length){
       console.log('inside query, about to log result:');
       console.log(result);
       console.log(result.length);
@@ -162,6 +162,7 @@ module.exports = function(app, passport) {
         // });
 
       }
+    }
     });
 
     connection.end(function(err){
