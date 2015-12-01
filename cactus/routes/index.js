@@ -152,6 +152,7 @@ module.exports = function(app, passport) {
 
           connection.query(mealsQuery, result[i].mealid, function (err, results) {
             if(results){
+              console.log('subquery ran');
               mealinfo = result[0];
               userorders[result[i].id].meals = mealinfo;
 
