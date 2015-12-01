@@ -108,14 +108,13 @@ module.exports = function(app, passport) {
 
           connection.query(insertQuery, inserts, function(err, result) {
             if(err) throw err;
-
-            console.log(result.insertId);
           });
         }
       }
     }
     connection.end(function(err) {
       if(err) throw err;
+      res.redirect('/myorders');
     });
 
   });
@@ -206,11 +205,7 @@ module.exports = function(app, passport) {
 
     connection.query(checkQuery, inserts, function(err, results) {
       if(err) throw err;
-      if(results.length) {
-        req.flash('you already ordered this');
-        res.redirect('/myorders');
-      }
-      else {
+      if(!results){
         connection.query(insertQuery, inserts, function(err, results) {
           if(err) throw err;
           res.redirect('/myorders');
