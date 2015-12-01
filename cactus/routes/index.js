@@ -149,7 +149,7 @@ module.exports = function(app, passport) {
         var insert = [result[i].mealid];
         connection.query(otherQuery, insert, function(err, results) {
           for(var k = 0; i < results.length; i++){
-            userorders[result[i].id].meals[results.[k].id] = results[k];
+            userorders[result[i].id].meals[results[k].id] = results[k];
           }
           console.log(userorders);
         });
