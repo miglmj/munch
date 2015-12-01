@@ -11,6 +11,7 @@
             <tr>
               <th>OrderID#</th>
               <th>Meal</th>
+              <th>Price</th>
               <th>Address</th>
               <th>Chef</th>
               <th>Time</th>
@@ -18,8 +19,14 @@
             </tr>
           </thead>
           <tbody>
-            {{#each orders}}
-              let's save some time here
+            {{#each userorders}}
+              <td>{{this.orderid}}</td>
+              <td>{{this.mealinfo.title}}</td>
+              <td>{{this.mealinfo.price}}</td>
+              <td>{{this.mealinfo.address}}</td>
+              <td>{{this.mealinfo.chefid}}</td>
+              <td>{{this.mealinfo.eatby}}</td>
+              <td>{{this.placed}}</td>
             {{/each}}
           </tbody>
         </table>

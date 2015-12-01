@@ -155,10 +155,7 @@ module.exports = function(app, passport) {
             }
           });
         }
-
-
-
-        }
+       }
       });
 
     connection.end(function(err){
@@ -166,7 +163,7 @@ module.exports = function(app, passport) {
       console.log('closing connection, about to log userorders and mealsarr');
       console.log(userorders);
       console.log(mealsarr);
-      res.render('orders');
+      res.render('orders', {userorders: userorders});
     })
   });
 
