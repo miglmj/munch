@@ -137,7 +137,7 @@ module.exports = function(app, passport) {
 
     var insertQuery = "INSERT INTO " + dbconfig.orders_table +"(mealid, custid) values (?,?)";
     var checkQuery = "SELECT * FROM " + dbconfig.orders_table + "WHERE mealid = ? AND custid = ?";
-    var inserts = [mealid, custid];
+    var inserts = [`mealid`, `custid`];
 
     connection.query(checkQuery, inserts, function(err, results) {
       if(err) throw err;
