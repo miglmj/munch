@@ -132,8 +132,8 @@ module.exports = function(app, passport) {
 
   app.post('/myorders', isLoggedIn, function(req, res) {
 
-    var mealid = parseInt(req.body.mealid;);
-    var custid = parseInt(req.body.custid;);
+    var mealid = parseInt(req.body.mealid);
+    var custid = parseInt(req.body.custid);
 
     var insertQuery = "INSERT INTO " + dbconfig.orders_table +"(mealid, custid) values (?,?)";
     var checkQuery = "SELECT * FROM " + dbconfig.orders_table + "WHERE mealid = ? AND custid = ?";
