@@ -48,7 +48,7 @@ CREATE TABLE ' + dbconfig.database + '.' + dbconfig.orders_table + ' ( \
     id INT UNSIGNED NOT NULL AUTO_INCREMENT, \
     mealid INT UNSIGNED NOT NULL, \
     custid INT UNSIGNED NOT NULL, \
-    rating INT NOT NULL, \
+    rating INT, \
     PRIMARY KEY(id), \
     FOREIGN KEY(mealid) \
       REFERENCES ' + dbconfig.database + '.' + dbconfig.meals_table +'(id) \
