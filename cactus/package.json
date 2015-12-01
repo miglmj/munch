@@ -9,6 +9,7 @@
   "author": "Miguel Mejia",
   "license": "ISC",
   "dependencies": {
+    "async": "^1.5.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.1",
     "bootstrap": "^3.3.6",

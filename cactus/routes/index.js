@@ -1,8 +1,5 @@
 // database libraries
 var mysql = require('mysql');
-var dbconfig = require('../config/database');
-var connection = mysql.createConnection(dbconfig.connection);
-connection.query('USE ' + dbconfig.database);
 
 // set database to be used
 
@@ -183,10 +180,10 @@ module.exports = function(app, passport) {
 
     connection.end(function(err){
       if(err) throw err;
-      console.log('closing connection, about to log userorders and mealsarr');
+      console.log('closing connection, about to log userorders and meals');
       console.log(userorders);
       console.log(meals);
-      res.render('orders', {userorders: userorders});
+      res.render('orders', {userorders: userorders, meals: meals});
     })
   });
 
