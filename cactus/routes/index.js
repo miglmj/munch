@@ -137,33 +137,29 @@ module.exports = function(app, passport) {
 
     connection.query(ordersQuery, userinsert, function(err, result) {
       if(result.length){
-      console.log('inside query, about to log result:');
-      console.log(result);
-      console.log(result.length);
-
-      var lim = result.length;
+        var lim = result.length;
 
 
-      for(var i = 0; i < lim; i++){
+        for(var i = 0; i < lim; i++){
+          userorders[result[i].id] = {
+            orderid: result[i].id,
+            mealid: result[i].mealid,
+            placed: result[i].placed,
+          }
 
-        userorders[result[i].id] = {
-          orderid: result[i].id,
-          mealid: result[i].mealid,
-          placed: result[i].placed,
+          var mealinfo = {};
+          connection.query(mealsQuery, [result[i].mealid], function (err, result) {
+            if(result.length){
+              mealinfo = result[0];
+              userorders[result[i].id].meals = mealinfo;
+            }
+          }
         }
 
-        mealsarr.push(result[i].mealid);
 
-        // connection.query(otherQuery, insert, function(err, results) {
-        //   for(var k = 0; i < results.length; i++){
-        //     userorders[result[i].id].meals[results[k].id] = results[k];
-        //   }
-        //   console.log(userorders);
-        // });
 
-      }
-    }
-    });
+        }
+      });
 
     connection.end(function(err){
       if(err) throw err;
