@@ -6,8 +6,8 @@ module.exports = {
     'user'  : 'testuser',
     'password'  : 'testpass'
   },
-  'database'  : 'cactus',
+  'database'  : 'dill',
   'users_table' : 'users',
   'meals_table' : 'meals',
-  'ratings_table' : 'ratings'
+  'orders_table' : 'orders'
 };

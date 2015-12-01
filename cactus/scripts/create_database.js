@@ -44,10 +44,10 @@ console.log('Success: Meals table created');
 
 // create Ratings table
 connection.query('\
-CREATE TABLE ' + dbconfig.database + '.' + dbconfig.ratings_table + ' ( \
+CREATE TABLE ' + dbconfig.database + '.' + dbconfig.orders_table + ' ( \
     id INT UNSIGNED NOT NULL AUTO_INCREMENT, \
     mealid INT UNSIGNED NOT NULL, \
-    ratinguser INT UNSIGNED NOT NULL, \
+    custid INT UNSIGNED NOT NULL, \
     rating INT NOT NULL, \
     PRIMARY KEY(id), \
     FOREIGN KEY(mealid) \
