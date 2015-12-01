@@ -16,9 +16,6 @@ module.exports = function(app, passport) {
 
       var meal = {};
 
-      console.log(result);
-      console.log(result[0]);
-
       meal = result[0];
 
       req.meal = meal;
@@ -124,6 +121,7 @@ module.exports = function(app, passport) {
   });
 
   app.get('/menu/:mealid', function(req, res) {
+    console.log(req.meal);
     res.render('meal', {meal: req.meal});
   });
 
