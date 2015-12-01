@@ -1,5 +1,5 @@
 /*
-  Script to create db and tables for users, meals, and ratings
+  Script to create db and tables for users, meals, and orders
 */
 
 var mysql = require('mysql');
@@ -42,7 +42,7 @@ CREATE TABLE ' + dbconfig.database + '.' + dbconfig.meals_table + ' ( \
 )');
 console.log('Success: Meals table created');
 
-// create Ratings table
+// create Orders table
 connection.query('\
 CREATE TABLE ' + dbconfig.database + '.' + dbconfig.orders_table + ' ( \
     id INT UNSIGNED NOT NULL AUTO_INCREMENT, \
@@ -53,11 +53,11 @@ CREATE TABLE ' + dbconfig.database + '.' + dbconfig.orders_table + ' ( \
     FOREIGN KEY(mealid) \
       REFERENCES ' + dbconfig.database + '.' + dbconfig.meals_table +'(id) \
       ON DELETE CASCADE, \
-    FOREIGN KEY(ratinguser) \
+    FOREIGN KEY(custid) \
       REFERENCES ' + dbconfig.database + '.' + dbconfig.users_table +'(id) \
       ON DELETE CASCADE, \
-      UNIQUE INDEX ratings_UNIQUE (mealid, ratinguser) \
+      UNIQUE INDEX orders_UNIQUE (mealid, custid) \
 )');
-console.log('Success: Ratings table created');
+console.log('Success: Orders table created');
 
 connection.end();
